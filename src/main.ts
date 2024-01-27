@@ -11,17 +11,23 @@ button?.addEventListener('click', async () => {
    adviceNumber.innerHTML = '...';
    adviceNumber.classList.add('animator');
    adviceText.style.opacity = '0';
-   
-   const response: Slip | string = await getAdvice();
-   console.log('respuesta:', response);
 
-   if (typeof response !== 'string') {
-      adviceNumber.innerText = `${response.id}`;
-      adviceText.classList.remove('error');
-      adviceText.innerText = `"${response.advice}"`;
-   } else {
+   const responseAdvice: { error?: string; slip?: Slip } = {};
+   await getAdvice()
+      .then((slip) => (responseAdvice.slip = slip))
+      .catch((err) => (responseAdvice.error = err));
+
+   console.log('respuesta:', responseAdvice);
+
+   if (responseAdvice.error) {
+      const { error } = responseAdvice;
       adviceText.classList.add('error');
-      adviceText.innerText = `-- Sorry, ${response.toLowerCase()} --`;
+      adviceText.innerText = `-- Sorry, ${error.toLowerCase()} --`;
+   } else {
+      const { slip } = responseAdvice;
+      adviceNumber.innerText = `${slip?.id}`;
+      adviceText.classList.remove('error');
+      adviceText.innerText = `"${slip?.advice}"`;
    }
 
    button.removeAttribute('disabled');

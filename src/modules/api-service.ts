@@ -2,24 +2,23 @@ import { Slip } from '../interfaces/Slip.interface';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-async function getAdvice(): Promise<Slip | string> {
-   let slip!: Slip;
-   const textError = 'An error occurred in the request';
+async function getAdvice(): Promise<Slip> {
+   try {
+      let slip!: Slip;
+      await fetch(apiUrl)
+         .then((res) => {
+            if (!res.ok) throw { ok: false, message: 'An error occurred in the request' };
+            return res.json();
+         })
+         .then((data) => {
+            slip = data['slip'];
+         });
 
-   await fetch(apiUrl)
-      .then((res) => {
-         if (!res.ok) throw { ok: false, message: textError };
-         return res.json();
-      })
-      .then((data) => {
-         slip = data['slip'];
-      })
-      .catch((err) => console.error('Error:', err));
-
-   return slip || textError;
+      return slip;
+   } catch (error: any) {
+      console.error('Error:', error);
+      throw error.message;
+   }
 }
 
-const suma = () => {
-   return 2;
-};
-export { getAdvice, suma };
+export { getAdvice };
