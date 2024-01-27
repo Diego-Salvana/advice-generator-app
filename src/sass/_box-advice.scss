@@ -1,0 +1,154 @@
+@use 'variables';
+
+main {
+   width: 90%;
+   max-width: 340px;
+   min-height: 306px;
+   color: white;
+   background-color: variables.$DarkGrayishBlue;
+   padding: 0 22px;
+   padding-bottom: 35px;
+   border-radius: 10px;
+   margin: auto;
+   text-align: center;
+   position: relative;
+   box-shadow: 50px 50px 50px hsla(0, 0%, 7%, 0.1);
+   display: flex;
+   flex-direction: column;
+
+   @media (min-width: variables.$isDesktop) {
+      max-width: 540px;
+      min-height: 326px;
+      padding-left: 50px;
+      padding-right: 50px;
+      border-radius: 15px;
+   }
+}
+
+.title {
+   font-weight: 700;
+   font-size: 11px;
+   letter-spacing: 4px;
+   color: variables.$NeonGreen;
+   padding: 44px 0 22px;
+
+   &__number.animator {
+      animation-name: writer;
+      animation-duration: 1s;
+      animation-timing-function: steps(3);
+      animation-iteration-count: infinite;
+
+      @keyframes writer {
+         0% {
+            clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+         }
+         75% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+         }
+      }
+   }
+
+   @media (min-width: variables.$isDesktop) {
+      font-size: 13px;
+      padding-top: 48px;
+      padding-bottom: 24px;
+   }
+}
+
+.advice {
+   color: variables.$LightCyan;
+   font-weight: 700;
+   font-size: 23px;
+   line-height: 1.4;
+   letter-spacing: 0px;
+   flex-grow: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+
+   &__text {
+      transition: opacity 0.15s linear;
+
+      &.error {
+         font-weight: 500;
+         font-size: 18px;
+         color: orangered;
+      }
+   }
+
+   @media (min-width: variables.$isDesktop) {
+      font-weight: 700;
+      font-size: 28px;
+   }
+}
+
+.separator {
+   margin: 23px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   &::before {
+      content: '';
+      display: inline-block;
+      height: 1px;
+      flex-grow: 1;
+      background-color: variables.$GrayishBlue;
+   }
+
+   &::after {
+      content: '';
+      display: inline-block;
+      height: 1px;
+      flex-grow: 1;
+      background-color: variables.$GrayishBlue;
+   }
+
+   &__center {
+      display: inline-block;
+      margin: 0 15px;
+      height: 16px;
+
+      .bar {
+         display: inline-block;
+         width: 5px;
+         height: 100%;
+         background-color: white;
+         border-radius: 50px;
+
+         &:first-child {
+            margin-right: 5px;
+         }
+      }
+   }
+
+   @media (min-width: variables.$isDesktop) {
+      margin: 34px 0;
+
+      &__center {
+         .bar {
+            width: 6px;
+         }
+      }
+   }
+}
+
+.btn-generator {
+   position: absolute;
+   width: 62px;
+   height: 62px;
+   border: none;
+   border-radius: 50%;
+   background-color: variables.$NeonGreen;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   bottom: 0;
+   left: 50%;
+   transform: translate(-50%, 50%);
+   cursor: pointer;
+
+   &:active {
+      box-shadow: 0 0 20px variables.$NeonGreen, 0 0 40px variables.$NeonGreen;
+   }
+}
