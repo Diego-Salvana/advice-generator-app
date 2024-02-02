@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "msw": "^2.1.5",
     "sass": "^1.69.7",
     "typescript": "^5.2.2",
     "vite": "^5.0.12",

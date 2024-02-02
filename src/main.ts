@@ -15,7 +15,7 @@ button?.addEventListener('click', async () => {
    const responseAdvice: { error?: string; slip?: Slip } = {};
    await getAdvice()
       .then((slip) => (responseAdvice.slip = slip))
-      .catch((err) => (responseAdvice.error = err));
+      .catch((err: Error) => (responseAdvice.error = err.message));
 
    console.log('respuesta:', responseAdvice);
 
