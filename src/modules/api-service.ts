@@ -1,6 +1,7 @@
 import { Slip } from '../interfaces/Slip.interface';
 
-const apiUrl = import.meta.env.VITE_API_URL;
+// const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = 'https://api.adviceslip.com/advice';
 
 async function getAdvice(): Promise<Slip> {
    const errorText = 'An error occurred in the request';
