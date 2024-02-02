@@ -17,8 +17,6 @@ button?.addEventListener('click', async () => {
       .then((slip) => (responseAdvice.slip = slip))
       .catch((err: Error) => (responseAdvice.error = err.message));
 
-   console.log('respuesta:', responseAdvice);
-
    if (responseAdvice.error) {
       const { error } = responseAdvice;
       adviceText.classList.add('error');

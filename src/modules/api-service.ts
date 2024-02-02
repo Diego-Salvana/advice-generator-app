@@ -3,8 +3,6 @@ import { Slip } from '../interfaces/Slip.interface';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 async function getAdvice(): Promise<Slip> {
-   console.log('Api URL:', apiUrl);
-
    const errorText = 'An error occurred in the request';
    try {
       let slip!: Slip;
